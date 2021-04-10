@@ -1,0 +1,36 @@
+body {
+	background-color: #222123;
+	color: #bfccf2;
+	font-family: sans-serif;
+	font-size: 20px;
+}
+.wrapper {
+	max-width: 60em;
+	margin: 0 auto;
+}
+#problemsetGrid {
+	display: grid;
+	max-width: 40em;
+	justify-content: center;
+	grid-template-columns: repeat(2, 1fr);
+}
+.problemset {
+	text-align: left;
+}
+a:link {
+	color: #698cf4;
+}
+a:visited {
+	color: #698cf4;
+}
+@media screen and (max-width: 770px) {
+	#problemsetGrid {
+		max-width: 20em;
+		grid-template-columns: 1fr;
+	}
+}
+@media screen and (min-width: 1920px) {
+	body {
+		font-size: 1vw;
+	}
+}
