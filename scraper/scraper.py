@@ -52,6 +52,8 @@ if(test_name == "AMC8"):
 	
 	for i in range(1, 26):
 		file_name = ""
+		solution_url = "https://artofproblemsolving.com/wiki/index.php/"
+		solution_url += year_str + "_AMC_8_Problems/Problem_" + str(i)
 		if 1 <= i and i <= 9:
 			file_name = "0" + str(i) + ".html"
 		else:
@@ -60,6 +62,7 @@ if(test_name == "AMC8"):
 		f.write("<!DOCTYPE html>\n")
 		f.write("<html>\n")
 		f.write('<head>\n')
+		f.write('\t<meta charset="utf-8">')
 		f.write('\t<meta name="HandheldFriendly" content="true" />\n')
 		f.write('\t<meta name="MobileOptimized" content="320" />\n')
 		f.write('\t<meta name="viewport" content="width=device-width, initial-scale=1.0">\n')
@@ -68,6 +71,9 @@ if(test_name == "AMC8"):
 		f.write('<body>\n')
 		f.write('\t<h2>' + year_str + ' ' + test_name + ' Problem '  + str(i) + '</h2>\n')
 		f.write(str(all_text[counter]))
+		f.write('\n\t<br/>')
+		f.write('\t<a href="' + solution_url + '" target="_blank" rel="noopener noreferrer">Solution</a>\n')
+		f.write('\t<p>The AMC/AIME problems are copyright &#169; Mathematical Association of America.</p>\n')
 		f.write('</body>\n')
 		f.write('</html>\n')
 		f.close()
@@ -94,6 +100,11 @@ elif(test_name == "AMC10" or test_name == "AMC12"):
 	
 	for i in range(1, 26):
 		file_name = ""
+		solution_url = "https://artofproblemsolving.com/wiki/index.php/"
+		solution_url += year_str + "_AMC_10A_Problems/Problem_" + str(i)
+		if(test_name == "AMC12"):
+			solution_url = "https://artofproblemsolving.com/wiki/index.php/"
+			solution_url += year_str + "_AMC_12A_Problems/Problem_" + str(i)
 		if 1 <= i and i <= 9:
 			file_name = "0" + str(i) + ".html"
 		else:
@@ -102,6 +113,7 @@ elif(test_name == "AMC10" or test_name == "AMC12"):
 		f.write("<!DOCTYPE html>\n")
 		f.write("<html>\n")
 		f.write('<head>\n')
+		f.write('\t<meta charset="utf-8">')
 		f.write('\t<meta name="HandheldFriendly" content="true" />\n')
 		f.write('\t<meta name="MobileOptimized" content="320" />\n')
 		f.write('\t<meta name="viewport" content="width=device-width, initial-scale=1.0">\n')
@@ -110,6 +122,9 @@ elif(test_name == "AMC10" or test_name == "AMC12"):
 		f.write('<body>\n')
 		f.write('\t<h2>' + year_str + ' ' + test_name + 'A Problem '  + str(i) + '</h2>\n')
 		f.write(str(all_text[counter]))
+		f.write('\n\t<br/>')
+		f.write('\t<a href="' + solution_url + '" target="_blank" rel="noopener noreferrer">Solution</a>\n')
+		f.write('\t<p>The AMC/AIME problems are copyright &#169; Mathematical Association of America.</p>\n')
 		f.write('</body>\n')
 		f.write('</html>\n')
 		f.close()
@@ -127,6 +142,11 @@ elif(test_name == "AMC10" or test_name == "AMC12"):
 
 	for i in range(1, 26):
 		file_name = ""
+		solution_url = "https://artofproblemsolving.com/wiki/index.php/"
+		solution_url += year_str + "_AMC_10A_Problems/Problem_" + str(i)
+		if(test_name == "AMC12"):
+			solution_url = "https://artofproblemsolving.com/wiki/index.php/"
+			solution_url += year_str + "_AMC_12A_Problems/Problem_" + str(i)
 		if 1 <= i and i <= 9:
 			file_name = "0" + str(i) + ".html"
 		else:
@@ -135,6 +155,7 @@ elif(test_name == "AMC10" or test_name == "AMC12"):
 		f.write("<!DOCTYPE html>\n")
 		f.write("<html>\n")
 		f.write('<head>\n')
+		f.write('\t<meta charset="utf-8">')
 		f.write('\t<meta name="HandheldFriendly" content="true" />\n')
 		f.write('\t<meta name="MobileOptimized" content="320" />\n')
 		f.write('\t<meta name="viewport" content="width=device-width, initial-scale=1.0">\n')
@@ -143,6 +164,9 @@ elif(test_name == "AMC10" or test_name == "AMC12"):
 		f.write('<body>\n')
 		f.write('\t<h2>' + year_str + ' ' + test_name + 'B Problem '  + str(i) + '</h2>\n')
 		f.write(str(all_text[counter]))
+		f.write('\n\t<br/>')
+		f.write('\t<a href="' + solution_url + '" target="_blank" rel="noopener noreferrer">Solution</a>\n')
+		f.write('\t<p>The AMC/AIME problems are copyright &#169; Mathematical Association of America.</p>\n')
 		f.write('</body>\n')
 		f.write('</html>\n')
 		f.close()
@@ -169,6 +193,8 @@ elif(test_name == "AIME"):
 	
 	for i in range(1, 16):
 		file_name = ""
+		solution_url = "https://artofproblemsolving.com/wiki/index.php/"
+		solution_url += year_str + "_AIME_I_Problems/Problem_" + str(i)
 		if 1 <= i and i <= 9:
 			file_name = "0" + str(i) + ".html"
 		else:
@@ -177,6 +203,7 @@ elif(test_name == "AIME"):
 		f.write("<!DOCTYPE html>\n")
 		f.write("<html>\n")
 		f.write('<head>\n')
+		f.write('\t<meta charset="utf-8">')
 		f.write('\t<meta name="HandheldFriendly" content="true" />\n')
 		f.write('\t<meta name="MobileOptimized" content="320" />\n')
 		f.write('\t<meta name="viewport" content="width=device-width, initial-scale=1.0">\n')
@@ -185,6 +212,9 @@ elif(test_name == "AIME"):
 		f.write('<body>\n')
 		f.write('\t<h2>' + year_str + ' ' + test_name + ' I Problem '  + str(i) + '</h2>\n')
 		f.write(str(all_text[counter]))
+		f.write('\n\t<br/>')
+		f.write('\t<a href="' + solution_url + '" target="_blank" rel="noopener noreferrer">Solution</a>\n')
+		f.write('\t<p>The AMC/AIME problems are copyright &#169; Mathematical Association of America.</p>\n')
 		f.write('</body>\n')
 		f.write('</html>\n')
 		f.close()
@@ -202,6 +232,8 @@ elif(test_name == "AIME"):
 
 	for i in range(1, 16):
 		file_name = ""
+		solution_url = "https://artofproblemsolving.com/wiki/index.php/"
+		solution_url += year_str + "_AIME_II_Problems/Problem_" + str(i)
 		if 1 <= i and i <= 9:
 			file_name = "0" + str(i) + ".html"
 		else:
@@ -210,6 +242,7 @@ elif(test_name == "AIME"):
 		f.write("<!DOCTYPE html>\n")
 		f.write("<html>\n")
 		f.write('<head>\n')
+		f.write('\t<meta charset="utf-8">')
 		f.write('\t<meta name="HandheldFriendly" content="true" />\n')
 		f.write('\t<meta name="MobileOptimized" content="320" />\n')
 		f.write('\t<meta name="viewport" content="width=device-width, initial-scale=1.0">\n')
@@ -218,6 +251,9 @@ elif(test_name == "AIME"):
 		f.write('<body>\n')
 		f.write('\t<h2>' + year_str + ' ' + test_name + ' II Problem '  + str(i) + '</h2>\n')
 		f.write(str(all_text[counter]))
+		f.write('\n\t<br/>')
+		f.write('\t<a href="' + solution_url + '" target="_blank" rel="noopener noreferrer">Solution</a>\n')
+		f.write('\t<p>The AMC/AIME problems are copyright &#169; Mathematical Association of America.</p>\n')
 		f.write('</body>\n')
 		f.write('</html>\n')
 		f.close()
