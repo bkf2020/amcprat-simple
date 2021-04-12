@@ -1,33 +1,19 @@
 body {
-	background-color: #222123;
-	color: #bfccf2;
+	background-color: #2c074f;
+	color: #efeafc;
 	font-family: sans-serif;
 	font-size: 20px;
 }
 .wrapper {
-	max-width: 60em;
+	max-width: 45em;
+	width: 90%;
 	margin: 0 auto;
 }
-#problemsetGrid {
-	display: grid;
-	max-width: 40em;
-	justify-content: center;
-	grid-template-columns: repeat(2, 1fr);
-}
-.problemset {
-	text-align: left;
-}
 a:link {
-	color: #698cf4;
+	color: #f756c1;
 }
 a:visited {
-	color: #698cf4;
-}
-@media screen and (max-width: 770px) {
-	#problemsetGrid {
-		max-width: 20em;
-		grid-template-columns: 1fr;
-	}
+	color: #f756c1;
 }
 @media screen and (min-width: 1920px) {
 	body {
