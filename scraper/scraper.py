@@ -41,8 +41,34 @@ except:
 
 all_text = [tag for tag in soup.find_all(class_ = "cmty-view-post-item-text")]
 
+for img in soup.find_all(name="img"):
+	try:
+		if(img["style"][-1:] != ";"):
+			img["style"] += ";"
+		try:
+			img["style"] += " width: calc(" + img["width"] + " * calc(1em/20));"
+			del img["width"]
+		except KeyError:
+			continue
+		try:
+			img["style"] += " height: calc(" + img["height"] + " * calc(1em/20));"
+			del img["height"]
+		except KeyError:
+			continue
+	except KeyError:
+		img["style"] = " "
+		try:
+			img["style"] += "width: calc(" + img["width"] + " * calc(1em/20)); "
+			del img["width"]
+		except KeyError:
+			continue
+		try:
+			img["style"] += "height: calc(" + img["height"] + " * calc(1em/20));"
+			del img["height"]
+		except KeyError:
+			continue
+
 if(test_name == "AMC8"):
-	copyfile("stylebutwhite.css", year_str + "/stylebutwhite.css");
 	skip = input("How many rows before the problems should be skipped? ")
 	while (not is_int(skip)):
 		print("Invalid number!")
@@ -66,9 +92,12 @@ if(test_name == "AMC8"):
 		f.write('\t<meta name="HandheldFriendly" content="true" />\n')
 		f.write('\t<meta name="MobileOptimized" content="320" />\n')
 		f.write('\t<meta name="viewport" content="width=device-width, initial-scale=1.0">\n')
-		f.write('\t<link rel="stylesheet" href="stylebutwhite.css">\n')
+		f.write('\t<link rel="stylesheet" href="/amcprat-simple/templates/stylebutwhite.css">\n')
 		f.write('</head>\n')
 		f.write('<body>\n')
+		f.write('\t<h1>AMCPRAT Problem</h1>\n')
+		f.write('\t<h3><em>Do not give up!</em></h3>\n')
+		f.write('\t<hr/>\n')
 		f.write('\t<h2>' + year_str + ' ' + test_name + ' Problem '  + str(i) + '</h2>\n')
 		f.write(str(all_text[counter]))
 		f.write('\n\t<br/>')
@@ -88,8 +117,6 @@ elif(test_name == "AMC10" or test_name == "AMC12"):
 		os.mkdir("./" + year_str + "/B")
 	except:
 		print("directories already exist. that's okay")
-	copyfile("stylebutwhite.css", year_str + "/A/stylebutwhite.css");
-	copyfile("stylebutwhite.css", year_str + "/B/stylebutwhite.css");
 
 	skip = input("How many rows before test A should be skipped? ")
 	while (not is_int(skip)):
@@ -117,9 +144,12 @@ elif(test_name == "AMC10" or test_name == "AMC12"):
 		f.write('\t<meta name="HandheldFriendly" content="true" />\n')
 		f.write('\t<meta name="MobileOptimized" content="320" />\n')
 		f.write('\t<meta name="viewport" content="width=device-width, initial-scale=1.0">\n')
-		f.write('\t<link rel="stylesheet" href="stylebutwhite.css">\n')
+		f.write('\t<link rel="stylesheet" href="/amcprat-simple/templates/stylebutwhite.css">\n')
 		f.write('</head>\n')
 		f.write('<body>\n')
+		f.write('\t<h1>AMCPRAT Problem</h1>\n')
+		f.write('\t<h3><em>Do not give up!</em></h3>\n')
+		f.write('\t<hr/>\n')
 		f.write('\t<h2>' + year_str + ' ' + test_name + 'A Problem '  + str(i) + '</h2>\n')
 		f.write(str(all_text[counter]))
 		f.write('\n\t<br/>')
@@ -159,9 +189,12 @@ elif(test_name == "AMC10" or test_name == "AMC12"):
 		f.write('\t<meta name="HandheldFriendly" content="true" />\n')
 		f.write('\t<meta name="MobileOptimized" content="320" />\n')
 		f.write('\t<meta name="viewport" content="width=device-width, initial-scale=1.0">\n')
-		f.write('\t<link rel="stylesheet" href="stylebutwhite.css">\n')
+		f.write('\t<link rel="stylesheet" href="/amcprat-simple/templates/stylebutwhite.css">\n')
 		f.write('</head>\n')
 		f.write('<body>\n')
+		f.write('\t<h1>AMCPRAT Problem</h1>\n')
+		f.write('\t<h3><em>Do not give up!</em></h3>\n')
+		f.write('\t<hr/>\n')
 		f.write('\t<h2>' + year_str + ' ' + test_name + 'B Problem '  + str(i) + '</h2>\n')
 		f.write(str(all_text[counter]))
 		f.write('\n\t<br/>')
@@ -181,8 +214,6 @@ elif(test_name == "AIME"):
 		os.mkdir("./" + year_str + "/II")
 	except:
 		print("directories already exist. that's okay")
-	copyfile("stylebutwhite.css", year_str + "/I/stylebutwhite.css");
-	copyfile("stylebutwhite.css", year_str + "/II/stylebutwhite.css");
 
 	skip = input("How many rows before test I should be skipped? ")
 	while (not is_int(skip)):
@@ -207,9 +238,12 @@ elif(test_name == "AIME"):
 		f.write('\t<meta name="HandheldFriendly" content="true" />\n')
 		f.write('\t<meta name="MobileOptimized" content="320" />\n')
 		f.write('\t<meta name="viewport" content="width=device-width, initial-scale=1.0">\n')
-		f.write('\t<link rel="stylesheet" href="stylebutwhite.css">\n')
+		f.write('\t<link rel="stylesheet" href="/amcprat-simple/templates/stylebutwhite.css">\n')
 		f.write('</head>\n')
 		f.write('<body>\n')
+		f.write('\t<h1>AMCPRAT Problem</h1>\n')
+		f.write('\t<h3><em>Do not give up!</em></h3>\n')
+		f.write('\t<hr/>\n')
 		f.write('\t<h2>' + year_str + ' ' + test_name + ' I Problem '  + str(i) + '</h2>\n')
 		f.write(str(all_text[counter]))
 		f.write('\n\t<br/>')
@@ -246,9 +280,12 @@ elif(test_name == "AIME"):
 		f.write('\t<meta name="HandheldFriendly" content="true" />\n')
 		f.write('\t<meta name="MobileOptimized" content="320" />\n')
 		f.write('\t<meta name="viewport" content="width=device-width, initial-scale=1.0">\n')
-		f.write('\t<link rel="stylesheet" href="stylebutwhite.css">\n')
+		f.write('\t<link rel="stylesheet" href="/amcprat-simple/templates/stylebutwhite.css">\n')
 		f.write('</head>\n')
 		f.write('<body>\n')
+		f.write('\t<h1>AMCPRAT Problem</h1>\n')
+		f.write('\t<h3><em>Do not give up!</em></h3>\n')
+		f.write('\t<hr/>\n')
 		f.write('\t<h2>' + year_str + ' ' + test_name + ' II Problem '  + str(i) + '</h2>\n')
 		f.write(str(all_text[counter]))
 		f.write('\n\t<br/>')
