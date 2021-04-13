@@ -5,7 +5,7 @@ interface, so it is easier to maintain.
 
 # todos
 - [x] instead of creating a `stylebutwhite.css` file in every directory, just use one file in `templates/stylebutwhite.css` or something like that
-- [ ] rename `stylebutwhite.css` to `styleproblems.css`, since it is a more accurate name
+- [x] rename `stylebutwhite.css` to `styleproblems.css`, since it is a more accurate name
 - [ ] add back `problemset.html` to make checking problemsets much easier
 - [ ] create c++/python code to generate random webpages for problemsets
 - [ ] add tests to make sure problemsets are correct???
