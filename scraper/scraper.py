@@ -46,24 +46,24 @@ for img in soup.find_all(name="img"):
 		if(img["style"][-1:] != ";"):
 			img["style"] += ";"
 		try:
-			img["style"] += " width: calc(" + img["width"] + " * calc(1em/20));"
+			img["style"] += " max-width: calc(" + img["width"] + " * calc(1em/20));"
 			del img["width"]
 		except KeyError:
 			continue
 		try:
-			img["style"] += " height: calc(" + img["height"] + " * calc(1em/20));"
+			img["style"] += " max-height: calc(" + img["height"] + " * calc(1em/20));"
 			del img["height"]
 		except KeyError:
 			continue
 	except KeyError:
-		img["style"] = " "
+		img["style"] = ""
 		try:
-			img["style"] += "width: calc(" + img["width"] + " * calc(1em/20)); "
+			img["style"] += "max-width: calc(" + img["width"] + " * calc(1em/20)); "
 			del img["width"]
 		except KeyError:
 			continue
 		try:
-			img["style"] += "height: calc(" + img["height"] + " * calc(1em/20));"
+			img["style"] += "max-height: calc(" + img["height"] + " * calc(1em/20));"
 			del img["height"]
 		except KeyError:
 			continue
