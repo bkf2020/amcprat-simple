@@ -33,6 +33,6 @@ a:visited {
 }
 @media screen and (min-width: 1920px) {
 	body {
-		font-size: 1vw;
+		font-size: 1.0416666666vw;
 	}
 }
