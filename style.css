@@ -10,6 +10,13 @@ body {
 	width: 90%;
 	margin: 0 auto;
 }
+.problemLinks {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 10px;
+	font-size: 1.1em;
+}
 a:link {
 	color: #f756c1;
 }
