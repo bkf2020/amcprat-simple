@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">	<meta name="HandheldFriendly" content="true" />
+	<meta name="MobileOptimized" content="320" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="../../../../templates/styleproblems.css">
+</head>
+<body>
+	<h1>AMCPRAT Problem</h1>
+	<h3><em>Do not give up! Zoom in if diagrams are unclear!</em></h3>
+	<hr/>
+	<h2>2015 AMC12B Problem 20</h2>
+<div class="cmty-view-post-item-text">For every positive integer <span style="white-space:nowrap;"><img alt="$n$" class="latex" src="https://latex.artofproblemsolving.com/1/7/4/174fadd07fd54c9afe288e96558c92e0c1da733a.png" style="width: calc(10 * calc(1em/18)); height: calc(8 * calc(1em/18));"/>,</span> let <img alt="$\operatorname{mod_5}(n)$" class="latex" src="https://latex.artofproblemsolving.com/0/1/c/01cf2f01de3b8783a23d8bc4ffbcd13365bf1cc8.png" style="vertical-align: -4px; width: calc(66 * calc(1em/18)); height: calc(18 * calc(1em/18));"/> be the remainder obtained when <img alt="$n$" class="latex" src="https://latex.artofproblemsolving.com/1/7/4/174fadd07fd54c9afe288e96558c92e0c1da733a.png" style="width: calc(10 * calc(1em/18)); height: calc(8 * calc(1em/18));"/> is divided by <span style="white-space:nowrap;"><img alt="$5$" class="latex" src="https://latex.artofproblemsolving.com/7/9/0/79069377f91364c2f87a64e5f9f562a091c8a6c1.png" style="width: calc(8 * calc(1em/18)); height: calc(12 * calc(1em/18));"/>.</span> Define a function <img alt="$f : \{0, 1, 2, 3, \dots\} \times \{0, 1, 2, 3, 4\} \to \{0, 1, 2, 3, 4\}$" class="latex" src="https://latex.artofproblemsolving.com/3/e/d/3ede1024841a0d8c2a1f02ce42e76901d2459763.png" style="vertical-align: -4px; width: calc(378 * calc(1em/18)); height: calc(18 * calc(1em/18));"/> recursively as follows:<br/>
+<img alt="\[f(i, j) = \begin{cases}
+\operatorname{mod_5}(j+1) &amp; \text{if }i=0\text{ and }0\leq j\leq 4 \\
+f(i-1, 1) &amp; \text{if }i\geq 1\text{ and }j=0 \text{, and}\\
+f(i-1, f(i, j-1)) &amp; \text{if }i\geq 1\text{ and }1\leq j\leq 4
+\end{cases}\]" class="latexcenter" src="https://latex.artofproblemsolving.com/9/e/7/9e7a619aceacce54486212984568f2de2e6efc08.png" style="width: calc(425 * calc(1em/18)); height: calc(74 * calc(1em/18));"/><br/>
+What is <span style="white-space:nowrap;"><img alt="$f(2015, 2)$" class="latex" src="https://latex.artofproblemsolving.com/d/e/a/dea706e47cff20b95dfbe3b0fb2a0b28e1986035.png" style="vertical-align: -4px; width: calc(77 * calc(1em/18)); height: calc(18 * calc(1em/18));"/>?</span><br/>
+<br/>
+<img alt="$\textbf{(A) }0 \qquad\textbf{(B) }1 \qquad\textbf{(C) }2 \qquad\textbf{(D) }3 \qquad\textbf{(E) }4$" class="latex" src="https://latex.artofproblemsolving.com/d/e/3/de316aaf4c3b856741e553c8d2763aed50cff4f8.png" style="vertical-align: -4px; width: calc(353 * calc(1em/18)); height: calc(17 * calc(1em/18));"/></div>
+	<br/>	<a href="https://artofproblemsolving.com/wiki/index.php/2015_AMC_12A_Problems/Problem_20" target="_blank" rel="noopener noreferrer">Solution</a>
+	<p>The AMC/AIME problems are copyright &#169; Mathematical Association of America.</p>
+</body>
+</html>
