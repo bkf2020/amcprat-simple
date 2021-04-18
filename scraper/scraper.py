@@ -46,24 +46,24 @@ for img in soup.find_all(name="img"):
 		if(img["style"][-1:] != ";"):
 			img["style"] += ";"
 		try:
-			img["style"] += " width: calc(" + img["width"] + " * calc(1em/20));"
+			img["style"] += " width: calc(" + img["width"] + " * calc(1em/18));"
 			del img["width"]
 		except KeyError:
 			continue
 		try:
-			img["style"] += " height: calc(" + img["height"] + " * calc(1em/20));"
+			img["style"] += " height: calc(" + img["height"] + " * calc(1em/18));"
 			del img["height"]
 		except KeyError:
 			continue
 	except KeyError:
 		img["style"] = ""
 		try:
-			img["style"] += "width: calc(" + img["width"] + " * calc(1em/20)); "
+			img["style"] += "width: calc(" + img["width"] + " * calc(1em/18)); "
 			del img["width"]
 		except KeyError:
 			continue
 		try:
-			img["style"] += "height: calc(" + img["height"] + " * calc(1em/20));"
+			img["style"] += "height: calc(" + img["height"] + " * calc(1em/18));"
 			del img["height"]
 		except KeyError:
 			continue
@@ -97,7 +97,7 @@ if(test_name == "AMC8"):
 		f.write('</head>\n')
 		f.write('<body>\n')
 		f.write('\t<h1>AMCPRAT Problem</h1>\n')
-		f.write('\t<h3><em>Do not give up!</em></h3>\n')
+		f.write('\t<h3><em>Do not give up! Zoom in if diagrams are unclear!</em></h3>\n')
 		f.write('\t<hr/>\n')
 		f.write('\t<h2>' + year_str + ' ' + test_name + ' Problem '  + str(i) + '</h2>\n')
 		f.write(str(all_text[counter]))
@@ -150,7 +150,7 @@ elif(test_name == "AMC10" or test_name == "AMC12"):
 		f.write('</head>\n')
 		f.write('<body>\n')
 		f.write('\t<h1>AMCPRAT Problem</h1>\n')
-		f.write('\t<h3><em>Do not give up!</em></h3>\n')
+		f.write('\t<h3><em>Do not give up! Zoom in if diagrams are unclear!</em></h3>\n')
 		f.write('\t<hr/>\n')
 		f.write('\t<h2>' + year_str + ' ' + test_name + 'A Problem '  + str(i) + '</h2>\n')
 		f.write(str(all_text[counter]))
@@ -195,7 +195,7 @@ elif(test_name == "AMC10" or test_name == "AMC12"):
 		f.write('</head>\n')
 		f.write('<body>\n')
 		f.write('\t<h1>AMCPRAT Problem</h1>\n')
-		f.write('\t<h3><em>Do not give up!</em></h3>\n')
+		f.write('\t<h3><em>Do not give up! Zoom in if diagrams are unclear!</em></h3>\n')
 		f.write('\t<hr/>\n')
 		f.write('\t<h2>' + year_str + ' ' + test_name + 'B Problem '  + str(i) + '</h2>\n')
 		f.write(str(all_text[counter]))
@@ -246,7 +246,7 @@ elif(test_name == "AIME"):
 		f.write('</head>\n')
 		f.write('<body>\n')
 		f.write('\t<h1>AMCPRAT Problem</h1>\n')
-		f.write('\t<h3><em>Do not give up!</em></h3>\n')
+		f.write('\t<h3><em>Do not give up! Zoom in if diagrams are unclear!</em></h3>\n')
 		f.write('\t<hr/>\n')
 		f.write('\t<h2>' + year_str + ' ' + test_name + ' I Problem '  + str(i) + '</h2>\n')
 		f.write(str(all_text[counter]))
@@ -288,7 +288,7 @@ elif(test_name == "AIME"):
 		f.write('</head>\n')
 		f.write('<body>\n')
 		f.write('\t<h1>AMCPRAT Problem</h1>\n')
-		f.write('\t<h3><em>Do not give up!</em></h3>\n')
+		f.write('\t<h3><em>Do not give up! Zoom in if diagrams are unclear!</em></h3>\n')
 		f.write('\t<hr/>\n')
 		f.write('\t<h2>' + year_str + ' ' + test_name + ' II Problem '  + str(i) + '</h2>\n')
 		f.write(str(all_text[counter]))
