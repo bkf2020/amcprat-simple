@@ -1,6 +1,7 @@
 body {
-	background-color: #2c074f;
-	color: #efeafc;
+	-webkit-text-size-adjust: 100%;
+	background-color: #260033;
+	color: #f9e6ff;
 	font-family: sans-serif;
 	font-size: 20px;
 }
@@ -17,6 +18,11 @@ a:visited {
 }
 @media screen and (min-width: 1920px) {
 	body {
-		font-size: 1vw;
+		font-size: 1.0416666666vw;
+	}
+}
+@media screen and (max-width: 720px) {
+	body {
+		font-size: 18px;
 	}
 }
