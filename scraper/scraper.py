@@ -93,7 +93,7 @@ if(test_name == "AMC8"):
 		f.write('\t<meta name="HandheldFriendly" content="true" />\n')
 		f.write('\t<meta name="MobileOptimized" content="320" />\n')
 		f.write('\t<meta name="viewport" content="width=device-width, initial-scale=1.0">\n')
-		f.write('\t<link rel="stylesheet" href="../../../templates/styleproblems.cssg">\n')
+		f.write('\t<link rel="stylesheet" href="../../../templates/styleproblems.css">\n')
 		f.write('</head>\n')
 		f.write('<body>\n')
 		f.write('\t<h1>AMCPRAT Problem</h1>\n')
