@@ -69,7 +69,7 @@ for img in soup.find_all(name="img"):
 			continue
 
 if(test_name == "AMC8"):
-	copyfile("problemsetamc.html", year_str + "/problemset.html")
+	copyfile("problemsetamc8.html", year_str + "/problemset.html")
 	skip = input("How many rows before the problems should be skipped? ")
 	while (not is_int(skip)):
 		print("Invalid number!")
@@ -118,8 +118,8 @@ elif(test_name == "AMC10" or test_name == "AMC12"):
 		os.mkdir("./" + year_str + "/B")
 	except:
 		print("directories already exist. that's okay")
-	copyfile("problemsetamc.html", year_str + "/A/problemset.html")
-	copyfile("problemsetamc.html", year_str + "/B/problemset.html")
+	copyfile("problemsetamc1012.html", year_str + "/A/problemset.html")
+	copyfile("problemsetamc1012.html", year_str + "/B/problemset.html")
 	skip = input("How many rows before test A should be skipped? ")
 	while (not is_int(skip)):
 		print("Invalid number!")
