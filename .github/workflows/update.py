@@ -19,6 +19,8 @@ def generate_problem_url(test, level):
 		elif(level == "veryhard"):
 			problem = random.randint(14, 15)
 		problem = str(problem)
+		if(len(problem) == 1):
+			problem = "0" + problem
 		
 		return year + "/" + test_type + "/" + problem + ".html"
 	
@@ -39,6 +41,8 @@ def generate_problem_url(test, level):
 		elif(level == "veryhard"):
 			problem = random.randint(23, 25)
 		problem = str(problem)
+		if(len(problem) == 1):
+			problem = "0" + problem
 		
 		return year + "/" + test_type + "/" + problem + ".html"
 	
@@ -56,6 +60,8 @@ def generate_problem_url(test, level):
 		elif(level == "veryhard"):
 			problem = random.randint(23, 25)
 		problem = str(problem)
+		if(len(problem) == 1):
+			problem = "0" + problem
 		
 		return year + "/" + problem + ".html"
 		
