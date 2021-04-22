@@ -1,7 +1,5 @@
 name: Update Problemsets Daily Manually
-on: 
-  schedule:
-    - cron: '00 23 * * *'
+on: [workflow_dispatch]
 jobs:
   Update-Problemsets:
     runs-on: ubuntu-latest
