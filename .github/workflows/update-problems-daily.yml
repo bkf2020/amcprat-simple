@@ -18,4 +18,4 @@ jobs:
       - name: Updating problemsets with update.py
         run: |
              python3 update.py
-      - run: echo "Status: ${{ job.status }}."
+      - run: echo "This job's status is ${{ job.status }}."
