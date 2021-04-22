@@ -1,12 +1,14 @@
 name: Update Problemsets Daily
 on: 
   schedule:
-    - cron: '45 22 * * *'
+    - cron: '00 23 * * *'
 jobs:
   Update-Problemsets:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "This job runs everyday at 22:45 UTC"
+      - run: echo "This job runs everyday at 23:00 UTC"
+      - name: Check out repository code
+        uses: actions/checkout@v2
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
         with:
