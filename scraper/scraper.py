@@ -175,10 +175,10 @@ elif(test_name == "AMC10" or test_name == "AMC12"):
 	for i in range(1, 26):
 		file_name = ""
 		solution_url = "https://artofproblemsolving.com/wiki/index.php/"
-		solution_url += year_str + "_AMC_10A_Problems/Problem_" + str(i)
+		solution_url += year_str + "_AMC_10B_Problems/Problem_" + str(i)
 		if(test_name == "AMC12"):
 			solution_url = "https://artofproblemsolving.com/wiki/index.php/"
-			solution_url += year_str + "_AMC_12A_Problems/Problem_" + str(i)
+			solution_url += year_str + "_AMC_12B_Problems/Problem_" + str(i)
 		if 1 <= i and i <= 9:
 			file_name = "0" + str(i) + ".html"
 		else:
