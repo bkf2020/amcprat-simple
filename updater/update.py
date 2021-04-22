@@ -71,7 +71,7 @@ levels = ["easy", "medium", "hard", "veryhard"]
 
 for test in tests:
 	for level in levels:
-		path = "../../problemsets/" + test + "/" + level + ".html"
+		path = "../problemsets/" + test + "/" + level + ".html"
 		soup = BeautifulSoup(open(path), features="html5lib")
 		
 		visited = {}

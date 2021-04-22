@@ -1,12 +1,12 @@
 name: Update Problemsets Daily
 on: 
   schedule:
-    - cron: '0 22 * * *'
+    - cron: '45 22 * * *'
 jobs:
   Update-Problemsets:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "This job runs everyday at 22:00 UTC"
+      - run: echo "This job runs everyday at 22:45 UTC"
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
         with:
@@ -17,5 +17,7 @@ jobs:
              pip install bs4
       - name: Updating problemsets with update.py
         run: |
-             python3 ${{ github.workspace }}/.github/workflows/update.py
+             python3 ${{ github.workspace }}/updater/update.py
+      - name: auto commit changes
+        uses: stefanzweifel/git-auto-commit-action@v4
       - run: echo "This job's status is ${{ job.status }}."
