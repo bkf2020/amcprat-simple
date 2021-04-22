@@ -18,6 +18,8 @@ jobs:
       - run: |
              cd updater
       - run: |
+             pwd
+      - run: |
              ls ../problemsets/aime/
       - name: Updating problemsets with update.py
         run: |
