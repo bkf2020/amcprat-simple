@@ -22,4 +22,6 @@ jobs:
              python3 ${{ github.workspace }}/update.py
       - name: auto commit changes
         uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Updating problemsets daily
       - run: echo "This job's status is ${{ job.status }}."
