@@ -15,6 +15,10 @@ jobs:
         run: |
              python -m pip install --upgrade pip
              pip install bs4
+      - run: |
+             cd updater
+      - run: |
+             ls ../problemsets/aime/
       - name: Updating problemsets with update.py
         run: |
              python3 ${{ github.workspace }}/updater/update.py
