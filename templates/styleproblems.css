@@ -1,16 +1,17 @@
 body {
 	-webkit-text-size-adjust: 100%;
 	background-color: #2d0057;
-	color: #f9e6ff;
+	color: #e5dff2;
 	font-family: sans-serif;
-	font-size: 20px;
+	font-size: 24px;
 	max-width: 60em;
 	width: 90%;
 	margin: 0 auto;
 }
 img {
-	-webkit-filter: invert(95%);
-	filter: invert(95%);
+	/* from the dark reader extension on Art of Problem Solving */
+	-webkit-filter: invert(100%) hue-rotate(180deg) contrast(90%) !important;
+	filter: invert(100%) hue-rotate(180deg) contrast(90%) !important; 
 }
 img.latexcenter {
 	display: block;
@@ -37,10 +38,15 @@ iframe {
 }
 @media screen and (min-width: 1920px) {
 	body {
-		font-size: 1.0416666666vw;
+		font-size: 1.25vw;
 	}
 }
-@media screen and (max-width: 720px) {
+@media screen and (max-width: 900px) {
+	body {
+		font-size: 20px;
+	}
+}
+@media screen and (max-width: 400px) {
 	body {
 		font-size: 18px;
 	}
