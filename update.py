@@ -87,4 +87,3 @@ for test in tests:
 		
 		page = open(path, "w")
 		page.write(str(soup))
-		page.write('\n')
