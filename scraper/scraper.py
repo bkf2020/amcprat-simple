@@ -71,7 +71,7 @@ for test in tests:
 					if(img["style"][-1:] != ";"):
 						img["style"] += ";"
 					try:
-						img["style"] += " max-width: calc(" + img["width"] + " * calc(1em/18));"
+						img["style"] += " width: calc(" + img["width"] + " * calc(1em/18));"
 						del img["width"]
 					except KeyError:
 						continue
@@ -83,7 +83,7 @@ for test in tests:
 				except KeyError:
 					img["style"] = ""
 					try:
-						img["style"] += "max-width: calc(" + img["width"] + " * calc(1em/18)); "
+						img["style"] += "width: calc(" + img["width"] + " * calc(1em/18)); "
 						del img["width"]
 					except KeyError:
 						continue

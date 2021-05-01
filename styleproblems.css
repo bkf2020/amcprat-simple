@@ -12,6 +12,7 @@ img {
 	/* from the dark reader extension on Art of Problem Solving */
 	-webkit-filter: invert(100%) hue-rotate(180deg) contrast(90%) !important;
 	filter: invert(100%) hue-rotate(180deg) contrast(90%) !important; 
+	max-width: 100%;
 }
 img.latexcenter {
 	display: block;
