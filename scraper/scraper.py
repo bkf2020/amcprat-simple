@@ -2,303 +2,174 @@ from bs4 import BeautifulSoup
 from shutil import copyfile
 import os
 import fileinput
+import requests
+import re
 
-soup = BeautifulSoup(open("index.html", encoding='utf-8'), 'html.parser')
+tests = ["amc8", "amc10", "amc12", "aime"]
 
-def is_int(s):
+years = {}
+years["amc8"] = range(2014, 2020 + 1)
+years["amc10"] = range(2015, 2021 + 1)
+years["amc12"] = range(2015, 2021 + 1)
+years["aime"] = range(2015, 2021 + 1)
+
+problems = {}
+problems["amc8"] = range(1, 25 + 1)
+problems["amc10"] = range(1, 25 + 1)
+problems["amc12"] = range(1, 25 + 1)
+problems["aime"] = range(1, 15 + 1)
+
+types = {}
+types["amc8"] = [""]
+types["amc10"] = ["A", "B"]
+types["amc12"] = ["A", "B"]
+types["aime"] = ["I", "II"]
+
+"""
+TODO:
+- make solution link open new tab
+- maybe stop scrapping test until the solution link?
+"""
+
+for test in tests:
 	try:
-		int(s)
-		return True
-	except ValueError:
-		return False
-
-def is_valid_test_name(s):
-	if s == "AMC8" or s == "AMC10" or s == "AMC12" or s == "AIME":
-		return True
-	return False
-
-print("Welcome to the AoPS Scrapper! First, make sure you have created the index.html file.")
-print("If you are unsure of what this is, please look at the README.md file.")
-try:
-	input("Press enter if you are ready.")
-except SyntaxError:
-	pass
-
-year_str = input("Enter the year: ")
-while (not is_int(year_str)):
-	print("Invalid year!")
-	year_str = input("Enter the year: ")
-
-test_name = input("Enter one of the following: AMC8, AMC10, AMC12, or AIME: ")
-while(not is_valid_test_name(test_name)):
-	print("Invalid test name!")
-	test_name = input("Enter one of the following: AMC8, AMC10, AMC12, or AIME: ")
-
-try:
-	os.mkdir("./" + year_str)
-except:
-	print("the directory with the name " + year_str + " already exists. that's fine.")
-
-all_text = [tag for tag in soup.find_all(class_ = "cmty-view-post-item-text")]
-
-for img in soup.find_all(name="img"):
-	try:
-		if(img["style"][-1:] != ";"):
-			img["style"] += ";"
-		try:
-			img["style"] += " width: calc(" + img["width"] + " * calc(1em/18));"
-			del img["width"]
-		except KeyError:
-			continue
-		try:
-			img["style"] += " height: calc(" + img["height"] + " * calc(1em/18));"
-			del img["height"]
-		except KeyError:
-			continue
-	except KeyError:
-		img["style"] = ""
-		try:
-			img["style"] += "width: calc(" + img["width"] + " * calc(1em/18)); "
-			del img["width"]
-		except KeyError:
-			continue
-		try:
-			img["style"] += "height: calc(" + img["height"] + " * calc(1em/18));"
-			del img["height"]
-		except KeyError:
-			continue
-
-if(test_name == "AMC8"):
-	copyfile("problemsetamc8.html", year_str + "/problemset.html")
-	skip = input("How many rows before the problems should be skipped? ")
-	while (not is_int(skip)):
-		print("Invalid number!")
-		skip = input("How many rows before the problems should be skipped? ")
-		
-	counter = int(skip)
-	
-	for i in range(1, 26):
-		file_name = ""
-		solution_url = "https://artofproblemsolving.com/wiki/index.php/"
-		solution_url += year_str + "_AMC_8_Problems/Problem_" + str(i)
-		if 1 <= i and i <= 9:
-			file_name = "0" + str(i) + ".html"
-		else:
-			file_name = str(i) + ".html"
-		f = open(year_str + "/" + file_name, "w")
-		f.write("<!DOCTYPE html>\n")
-		f.write("<html>\n")
-		f.write('<head>\n')
-		f.write('\t<meta charset="utf-8">')
-		f.write('\t<meta name="HandheldFriendly" content="true" />\n')
-		f.write('\t<meta name="MobileOptimized" content="320" />\n')
-		f.write('\t<meta name="viewport" content="width=device-width, initial-scale=1.0">\n')
-		f.write('\t<link rel="stylesheet" href="../../../templates/styleproblems.css">\n')
-		f.write('</head>\n')
-		f.write('<body>\n')
-		f.write('\t<h1>AMCPRAT Problem</h1>\n')
-		f.write('\t<h3><em>Do not give up! Zoom in if diagrams are unclear!</em></h3>\n')
-		f.write('\t<hr/>\n')
-		f.write('\t<h2>' + year_str + ' ' + test_name + ' Problem '  + str(i) + '</h2>\n')
-		f.write(str(all_text[counter]))
-		f.write('\n\t<br/>')
-		f.write('\t<a href="' + solution_url + '" target="_blank" rel="noopener noreferrer">Solution</a>\n')
-		f.write('\t<p>The AMC/AIME problems are copyright &#169; Mathematical Association of America.</p>\n')
-		f.write('</body>\n')
-		f.write('</html>\n')
-		f.close()
-		counter += 1
-		with fileinput.FileInput(year_str + "/" + file_name, inplace=True, backup='.bak') as file:
-			for line in file:
-				print(line.replace("//latex", "https://latex"), end='')
-
-elif(test_name == "AMC10" or test_name == "AMC12"):
-	try:
-		os.mkdir("./" + year_str + "/A")
-		os.mkdir("./" + year_str + "/B")
+		os.mkdir("./" + test)
 	except:
-		print("directories already exist. that's okay")
-	copyfile("problemsetamc1012.html", year_str + "/A/problemset.html")
-	copyfile("problemsetamc1012.html", year_str + "/B/problemset.html")
-	skip = input("How many rows before test A should be skipped? ")
-	while (not is_int(skip)):
-		print("Invalid number!")
-		skip = input("How many rows before test A should be skipped? ")
-		
-	counter = int(skip)
+		pass
 	
-	for i in range(1, 26):
-		file_name = ""
-		solution_url = "https://artofproblemsolving.com/wiki/index.php/"
-		solution_url += year_str + "_AMC_10A_Problems/Problem_" + str(i)
-		if(test_name == "AMC12"):
-			solution_url = "https://artofproblemsolving.com/wiki/index.php/"
-			solution_url += year_str + "_AMC_12A_Problems/Problem_" + str(i)
-		if 1 <= i and i <= 9:
-			file_name = "0" + str(i) + ".html"
-		else:
-			file_name = str(i) + ".html"
-		f = open(year_str + "/A/" + file_name, "w")
-		f.write("<!DOCTYPE html>\n")
-		f.write("<html>\n")
-		f.write('<head>\n')
-		f.write('\t<meta charset="utf-8">')
-		f.write('\t<meta name="HandheldFriendly" content="true" />\n')
-		f.write('\t<meta name="MobileOptimized" content="320" />\n')
-		f.write('\t<meta name="viewport" content="width=device-width, initial-scale=1.0">\n')
-		f.write('\t<link rel="stylesheet" href="../../../../templates/styleproblems.css">\n')
-		f.write('</head>\n')
-		f.write('<body>\n')
-		f.write('\t<h1>AMCPRAT Problem</h1>\n')
-		f.write('\t<h3><em>Do not give up! Zoom in if diagrams are unclear!</em></h3>\n')
-		f.write('\t<hr/>\n')
-		f.write('\t<h2>' + year_str + ' ' + test_name + 'A Problem '  + str(i) + '</h2>\n')
-		f.write(str(all_text[counter]))
-		f.write('\n\t<br/>')
-		f.write('\t<a href="' + solution_url + '" target="_blank" rel="noopener noreferrer">Solution</a>\n')
-		f.write('\t<p>The AMC/AIME problems are copyright &#169; Mathematical Association of America.</p>\n')
-		f.write('</body>\n')
-		f.write('</html>\n')
-		f.close()
-		counter += 1
-		with fileinput.FileInput(year_str + "/A/" + file_name, inplace=True, backup='.bak') as file:
-			for line in file:
-				print(line.replace("//latex", "https://latex"), end='')
-
-	skip = input("How many rows before test B should be skipped? ")
-	while (not is_int(skip)):
-		print("Invalid number!")
-		skip = input("How many rows before test B should be skipped? ")
+	for year in years[test]:
+		try:
+			os.mkdir("./" + test + "/" + str(year))
+		except:
+			pass
 		
-	counter += int(skip)
+		for test_type in types[test]:
+			if(test_type != ""):
+				try:
+					os.mkdir("./" + test + "/" + str(year) + "/" + test_type)
+				except:
+					pass
+			
+			if(test == "amc8"):
+				copyfile("problemsetamc8.html", test + "/" + str(year) + "/problemset.html")
+			elif(test == "amc10" or test == "amc12"):
+				copyfile("problemsetamc1012.html", test + "/" + str(year) + "/" + test_type + "/problemset.html")
+			else:
+				copyfile("problemsetaime.html", test + "/" + str(year) + "/" + test_type + "/problemset.html")
+			
+			URL = "https://artofproblemsolving.com/wiki/index.php/"
+			URL += str(year) + "_"
+			if(test == "aime"):
+				URL += "AIME_" + test_type + "_Problems"
+			elif(test == "amc8"):
+				URL += "AMC_8" + "_Problems"
+			elif(test == "amc10"):
+				URL += "AMC_10" + test_type + "_Problems"
+			elif(test == "amc12"):
+				URL += "AMC_12" + test_type + "_Problems"
+			
+			page = requests.get(URL)
+			soup = BeautifulSoup(page.content, 'html.parser')
+			
+			# use different img styles (scaling purposes):
+			for img in soup.find_all(name="img"):
+				try:
+					if(img["style"][-1:] != ";"):
+						img["style"] += ";"
+					try:
+						img["style"] += " max-width: calc(" + img["width"] + " * calc(1em/18));"
+						del img["width"]
+					except KeyError:
+						continue
+					try:
+						img["style"] += " max-height: calc(" + img["height"] + " * calc(1em/18));"
+						del img["height"]
+					except KeyError:
+						continue
+				except KeyError:
+					img["style"] = ""
+					try:
+						img["style"] += "max-width: calc(" + img["width"] + " * calc(1em/18)); "
+						del img["width"]
+					except KeyError:
+						continue
+					try:
+						img["style"] += "max-height: calc(" + img["height"] + " * calc(1em/18));"
+						del img["height"]
+					except KeyError:
+						continue
+			
+			solution_links = soup.find_all("a", text=re.compile("Solution"))
+			
+			for problem in problems[test]:
+				if(test != "aime"):
+					print("Creating " + str(year) + " " + test.upper() + test_type + " Problem #" + str(problem))
+				else:
+					print("Creating " + str(year) + " " + test.upper() + " " + test_type + " Problem #" + str(problem))
+				
+				file_name = str(problem) + ".html"
+				if(1 <= problem and problem <= 9):
+					file_name = "0" + str(problem) + ".html"
+				
+				f = open(test + "/" + str(year) + "/" + test_type + "/" + file_name, "w")
+				
+				f.write("<!DOCTYPE html>\n")
+				f.write("<html>\n")
+				f.write('<head>\n')
+				f.write('\t<meta charset="utf-8">')
+				f.write('\t<meta name="HandheldFriendly" content="true" />\n')
+				f.write('\t<meta name="MobileOptimized" content="320" />\n')
+				f.write('\t<meta name="viewport" content="width=device-width, initial-scale=1.0">\n')
+				
+				if(test == "amc8"):
+					f.write('\t<link rel="stylesheet" href="../../../templates/styleproblems.css">\n')
+				else:
+					f.write('\t<link rel="stylesheet" href="../../../../templates/styleproblems.css">\n')
+				
+				f.write('</head>\n')
+				f.write('<body>\n')
+				f.write('\t<h1>AMCPRAT Problem</h1>\n')
+				f.write('\t<h3><em>Do not give up! Zoom in if diagrams are unclear!</em></h3>\n')
+				f.write('\t<hr/>\n')
+				
+				if(test != "aime"):
+					f.write('\t<h2>' + str(year) + ' ' + test.upper() + test_type + ' Problem '  + str(problem) + '</h2>\n')
+				else:
+					f.write('\t<h2>' + str(year) + ' ' + test.upper() + ' ' + test_type + ' Problem '  + str(problem) + '</h2>\n')
+				
+				# scrapping the actual problem
+				problem_html = ""
+				start = soup.find("h2", text="Problem " + str(problem))
+				avoid = solution_links[problem - 1].parent
+				
+				# in case the wiki is broken
+				if(start == None):
+					print("The Wiki Page: " + URL + ", is missing problem " + problem)
+					print("Skipping this year. " + str(year) + ' ' + test.upper() + test_type + " is incomplete!")
+					print("Fix the wiki with an Art of Problem Solving account, if possible.")
+				if(avoid == None):
+					print("The Wiki Page: " + URL + ", is missing a solution link for problem " + problem)
+					print("Skipping this year. " + str(year) + ' ' + test.upper() + test_type + " is incomplete!")
+					print("Fix the wiki with an Art of Problem Solving account, if possible.")
+				
+				content = start.next_sibling.next_sibling
+				
+				while(content != avoid):
+					problem_html += str(content)
+					content = content.next_sibling
+				
+				f.write('\t' + problem_html)
+				f.write('\n\t<br/>\n')
+				
+				solution_url = URL + "/Problem_" + str(problem)
+				f.write('\t<a href="' + solution_url + '" target="_blank" rel="noopener noreferrer">Solution</a>\n')
+				
+				f.write('\t<p>The AMC/AIME problems are copyright &#169; Mathematical Association of America.</p>\n')
+				f.write('</body>\n')
+				f.write('</html>\n')
+				f.close()
+				
+				with fileinput.FileInput(test + "/" + str(year) + "/" + test_type + "/" + file_name, inplace=True, backup='.bak') as file:
+					for line in file:
+						print(line.replace("//latex", "https://latex"), end='')
 
-	for i in range(1, 26):
-		file_name = ""
-		solution_url = "https://artofproblemsolving.com/wiki/index.php/"
-		solution_url += year_str + "_AMC_10B_Problems/Problem_" + str(i)
-		if(test_name == "AMC12"):
-			solution_url = "https://artofproblemsolving.com/wiki/index.php/"
-			solution_url += year_str + "_AMC_12B_Problems/Problem_" + str(i)
-		if 1 <= i and i <= 9:
-			file_name = "0" + str(i) + ".html"
-		else:
-			file_name = str(i) + ".html"
-		f = open(year_str + "/B/" + file_name, "w")
-		f.write("<!DOCTYPE html>\n")
-		f.write("<html>\n")
-		f.write('<head>\n')
-		f.write('\t<meta charset="utf-8">')
-		f.write('\t<meta name="HandheldFriendly" content="true" />\n')
-		f.write('\t<meta name="MobileOptimized" content="320" />\n')
-		f.write('\t<meta name="viewport" content="width=device-width, initial-scale=1.0">\n')
-		f.write('\t<link rel="stylesheet" href="../../../../templates/styleproblems.css">\n')
-		f.write('</head>\n')
-		f.write('<body>\n')
-		f.write('\t<h1>AMCPRAT Problem</h1>\n')
-		f.write('\t<h3><em>Do not give up! Zoom in if diagrams are unclear!</em></h3>\n')
-		f.write('\t<hr/>\n')
-		f.write('\t<h2>' + year_str + ' ' + test_name + 'B Problem '  + str(i) + '</h2>\n')
-		f.write(str(all_text[counter]))
-		f.write('\n\t<br/>')
-		f.write('\t<a href="' + solution_url + '" target="_blank" rel="noopener noreferrer">Solution</a>\n')
-		f.write('\t<p>The AMC/AIME problems are copyright &#169; Mathematical Association of America.</p>\n')
-		f.write('</body>\n')
-		f.write('</html>\n')
-		f.close()
-		counter += 1
-		with fileinput.FileInput(year_str + "/B/" + file_name, inplace=True, backup='.bak') as file:
-			for line in file:
-				print(line.replace("//latex", "https://latex"), end='')
-
-elif(test_name == "AIME"):
-	try:
-		os.mkdir("./" + year_str + "/I")
-		os.mkdir("./" + year_str + "/II")
-	except:
-		print("directories already exist. that's okay")
-	copyfile("problemsetaime.html", year_str + "/I/problemset.html")
-	copyfile("problemsetaime.html", year_str + "/II/problemset.html")
-	
-	skip = input("How many rows before test I should be skipped? ")
-	while (not is_int(skip)):
-		print("Invalid number!")
-		skip = input("How many rows before test I should be skipped? ")
-		
-	counter = int(skip)
-	
-	for i in range(1, 16):
-		file_name = ""
-		solution_url = "https://artofproblemsolving.com/wiki/index.php/"
-		solution_url += year_str + "_AIME_I_Problems/Problem_" + str(i)
-		if 1 <= i and i <= 9:
-			file_name = "0" + str(i) + ".html"
-		else:
-			file_name = str(i) + ".html"
-		f = open(year_str + "/I/" + file_name, "w")
-		f.write("<!DOCTYPE html>\n")
-		f.write("<html>\n")
-		f.write('<head>\n')
-		f.write('\t<meta charset="utf-8">')
-		f.write('\t<meta name="HandheldFriendly" content="true" />\n')
-		f.write('\t<meta name="MobileOptimized" content="320" />\n')
-		f.write('\t<meta name="viewport" content="width=device-width, initial-scale=1.0">\n')
-		f.write('\t<link rel="stylesheet" href="../../../../templates/styleproblems.css">\n')
-		f.write('</head>\n')
-		f.write('<body>\n')
-		f.write('\t<h1>AMCPRAT Problem</h1>\n')
-		f.write('\t<h3><em>Do not give up! Zoom in if diagrams are unclear!</em></h3>\n')
-		f.write('\t<hr/>\n')
-		f.write('\t<h2>' + year_str + ' ' + test_name + ' I Problem '  + str(i) + '</h2>\n')
-		f.write(str(all_text[counter]))
-		f.write('\n\t<br/>')
-		f.write('\t<a href="' + solution_url + '" target="_blank" rel="noopener noreferrer">Solution</a>\n')
-		f.write('\t<p>The AMC/AIME problems are copyright &#169; Mathematical Association of America.</p>\n')
-		f.write('</body>\n')
-		f.write('</html>\n')
-		f.close()
-		counter += 1
-		with fileinput.FileInput(year_str + "/I/" + file_name, inplace=True, backup='.bak') as file:
-			for line in file:
-				print(line.replace("//latex", "https://latex"), end='')
-
-	skip = input("How many rows before test II should be skipped? ")
-	while (not is_int(skip)):
-		print("Invalid number!")
-		skip = input("How many rows before test II should be skipped? ")
-		
-	counter += int(skip)
-
-	for i in range(1, 16):
-		file_name = ""
-		solution_url = "https://artofproblemsolving.com/wiki/index.php/"
-		solution_url += year_str + "_AIME_II_Problems/Problem_" + str(i)
-		if 1 <= i and i <= 9:
-			file_name = "0" + str(i) + ".html"
-		else:
-			file_name = str(i) + ".html"
-		f = open(year_str + "/II/" + file_name, "w")
-		f.write("<!DOCTYPE html>\n")
-		f.write("<html>\n")
-		f.write('<head>\n')
-		f.write('\t<meta charset="utf-8">')
-		f.write('\t<meta name="HandheldFriendly" content="true" />\n')
-		f.write('\t<meta name="MobileOptimized" content="320" />\n')
-		f.write('\t<meta name="viewport" content="width=device-width, initial-scale=1.0">\n')
-		f.write('\t<link rel="stylesheet" href="../../../../templates/styleproblems.css">\n')
-		f.write('</head>\n')
-		f.write('<body>\n')
-		f.write('\t<h1>AMCPRAT Problem</h1>\n')
-		f.write('\t<h3><em>Do not give up! Zoom in if diagrams are unclear!</em></h3>\n')
-		f.write('\t<hr/>\n')
-		f.write('\t<h2>' + year_str + ' ' + test_name + ' II Problem '  + str(i) + '</h2>\n')
-		f.write(str(all_text[counter]))
-		f.write('\n\t<br/>')
-		f.write('\t<a href="' + solution_url + '" target="_blank" rel="noopener noreferrer">Solution</a>\n')
-		f.write('\t<p>The AMC/AIME problems are copyright &#169; Mathematical Association of America.</p>\n')
-		f.write('</body>\n')
-		f.write('</html>\n')
-		f.close()
-		counter += 1
-		with fileinput.FileInput(year_str + "/II/" + file_name, inplace=True, backup='.bak') as file:
-			for line in file:
-				print(line.replace("//latex", "https://latex"), end='')
