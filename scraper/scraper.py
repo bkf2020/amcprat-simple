@@ -25,12 +25,6 @@ types["amc10"] = ["A", "B"]
 types["amc12"] = ["A", "B"]
 types["aime"] = ["I", "II"]
 
-"""
-TODO:
-- make solution link open new tab
-- maybe stop scrapping test until the solution link?
-"""
-
 for test in tests:
 	try:
 		os.mkdir("./" + test)
