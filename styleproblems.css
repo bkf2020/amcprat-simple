@@ -7,6 +7,8 @@ body {
 	max-width: 60em;
 	width: 90%;
 	margin: 0 auto;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 img {
 	/* from the dark reader extension on Art of Problem Solving */
