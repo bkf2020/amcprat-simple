@@ -13,8 +13,11 @@ body {
 	margin: 0 auto;
 }
 .problemLinks {
+	display: -webkit-flex;
 	display: flex;
+	-webkit-flex-wrap: wrap;
 	flex-wrap: wrap;
+	-webkit-justify-content: center;
 	justify-content: center;
 	gap: 10px;
 	font-size: 1.1em;
