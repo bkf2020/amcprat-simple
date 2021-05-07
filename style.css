@@ -19,8 +19,10 @@ body {
 	flex-wrap: wrap;
 	-webkit-justify-content: center;
 	justify-content: center;
-	gap: 10px;
 	font-size: 1.1em;
+}
+#problem1, #problem2, #problem3, #problem4, #problem5 {
+	padding: 5px 8px 5px 8px;
 }
 a:link {
 	color: #f756c1;
