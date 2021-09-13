@@ -51,3 +51,18 @@ a:visited {
 		color: #f2eaf9;
 	}
 }
+.annoucement {
+	border-color: darkorange;
+	border-style: dashed;
+	border-radius: 1em;
+	margin-top: 2em;
+	padding-left: 1em;
+	background-color: #e6e5ad;
+	color: black;
+}
+.annoucementlink:link {
+	color: blue;
+}
+.annoucementlink:hover {
+	color: blue;
+}
