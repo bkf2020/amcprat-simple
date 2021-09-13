@@ -13,7 +13,7 @@ body {
 img {
 	/* from the dark reader extension on Art of Problem Solving */
 	-webkit-filter: invert(100%) hue-rotate(180deg) contrast(90%) !important;
-	filter: invert(100%) hue-rotate(180deg) contrast(90%) !important; 
+	filter: invert(100%) hue-rotate(180deg) contrast(90%) !important;
 	max-width: 100%;
 }
 img.latexcenter {
@@ -59,4 +59,19 @@ iframe {
 		background-color: #2d0057;
 		color: #f2eaf9;
 	}
+}
+.annoucement {
+	border-color: darkorange;
+	border-style: dashed;
+	border-radius: 1em;
+	margin-top: 2em;
+	padding-left: 1em;
+	background-color: #e6e5ad;
+	color: black;
+}
+.annoucementlink:link {
+	color: blue;
+}
+.annoucementlink:hover {
+	color: blue;
 }
